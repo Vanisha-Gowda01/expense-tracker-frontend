@@ -1,3 +1,27 @@
+# Expense Tracker Frontend
+
+React frontend for Expense Tracker application with authentication, dashboard, expense management, income management, and analytics.
+
+## Technologies Used
+
+- React
+- React Router DOM
+- Axios
+- Bootstrap
+
+## Features
+
+- Login & Register
+- Protected Dashboard
+- Add/Delete Expenses
+- Add/Delete Income
+- Analytics Dashboard
+
+## Run Project
+
+```bash
+npm install
+npm start
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

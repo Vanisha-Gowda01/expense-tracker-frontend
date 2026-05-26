@@ -74,34 +74,31 @@ function Dashboard() {
 
   };
 
-const deleteExpense = async (id) => {
 
-  await API.delete(
-    `/expenses/${id}`
-  );
+  const deleteExpense = async (id) => {
 
-  fetchExpenses();
+    await API.delete(
+      `/expenses/${id}`
+    );
 
-  fetchSummary();
+    fetchExpenses();
 
-};
+    fetchSummary();
 
-
-const deleteIncome = async (id) => {
-
-  await API.delete(
-    `/income/${id}`
-  );
-
-  fetchIncome();
-
-  fetchSummary();
-
-};
+  };
 
 
+  const deleteIncome = async (id) => {
 
+    await API.delete(
+      `/income/${id}`
+    );
 
+    fetchIncome();
+
+    fetchSummary();
+
+  };
 
 
   const handleExpenseChange = (e) => {
@@ -180,12 +177,16 @@ const deleteIncome = async (id) => {
 
     <div className="container mt-5">
 
-      <div className="d-flex justify-content-between">
+      <div className="d-flex justify-content-between align-items-center mb-4">
 
-        <h2>Dashboard</h2>
+        <h2 className="fw-bold">
+
+          Expense Tracker Dashboard
+
+        </h2>
 
         <button
-          className="btn btn-danger"
+          className="btn btn-danger px-4"
           onClick={logout}
         >
           Logout
@@ -193,11 +194,11 @@ const deleteIncome = async (id) => {
 
       </div>
 
-      <div className="row mt-4">
+      <div className="row g-4">
 
         <div className="col-md-4">
 
-          <div className="card p-4 shadow">
+          <div className="card p-4 shadow dashboard-card income-card">
 
             <h4>Total Income</h4>
 
@@ -209,7 +210,7 @@ const deleteIncome = async (id) => {
 
         <div className="col-md-4">
 
-          <div className="card p-4 shadow">
+          <div className="card p-4 shadow dashboard-card expense-card">
 
             <h4>Total Expense</h4>
 
@@ -221,7 +222,7 @@ const deleteIncome = async (id) => {
 
         <div className="col-md-4">
 
-          <div className="card p-4 shadow">
+          <div className="card p-4 shadow dashboard-card balance-card">
 
             <h4>Balance</h4>
 
@@ -233,20 +234,24 @@ const deleteIncome = async (id) => {
 
       </div>
 
-      <div className="row mt-5">
+      <div className="row mt-5 g-4">
 
         <div className="col-md-6">
 
           <div className="card p-4 shadow">
 
-            <h4>Add Expense</h4>
+            <h4 className="mb-4">
+
+              Add Expense
+
+            </h4>
 
             <form onSubmit={addExpense}>
 
               <input
                 type="text"
                 name="title"
-                placeholder="Title"
+                placeholder="Expense Title"
                 className="form-control mb-3"
                 value={expenseData.title}
                 onChange={handleExpenseChange}
@@ -255,7 +260,7 @@ const deleteIncome = async (id) => {
               <input
                 type="number"
                 name="amount"
-                placeholder="Amount"
+                placeholder="Expense Amount"
                 className="form-control mb-3"
                 value={expenseData.amount}
                 onChange={handleExpenseChange}
@@ -286,14 +291,18 @@ const deleteIncome = async (id) => {
 
           <div className="card p-4 shadow">
 
-            <h4>Add Income</h4>
+            <h4 className="mb-4">
+
+              Add Income
+
+            </h4>
 
             <form onSubmit={addIncome}>
 
               <input
                 type="text"
                 name="source"
-                placeholder="Source"
+                placeholder="Income Source"
                 className="form-control mb-3"
                 value={incomeData.source}
                 onChange={handleIncomeChange}
@@ -302,13 +311,13 @@ const deleteIncome = async (id) => {
               <input
                 type="number"
                 name="amount"
-                placeholder="Amount"
+                placeholder="Income Amount"
                 className="form-control mb-3"
                 value={incomeData.amount}
                 onChange={handleIncomeChange}
               />
 
-              <button className="btn btn-dark w-100">
+              <button className="btn btn-success w-100">
 
                 Add Income
 
@@ -322,37 +331,41 @@ const deleteIncome = async (id) => {
 
       </div>
 
-      <div className="row mt-5">
+      <div className="row mt-5 g-4">
 
         <div className="col-md-6">
 
           <div className="card p-4 shadow">
 
-            <h4>Expenses</h4>
+            <h4 className="mb-4">
+
+              Expenses
+
+            </h4>
 
             <ul className="list-group">
 
               {expenses.map((expense) => (
 
                 <li
-  key={expense.id}
-  className="list-group-item d-flex justify-content-between"
->
+                  key={expense.id}
+                  className="list-group-item d-flex justify-content-between align-items-center"
+                >
 
-  <span>
+                  <span>
 
-    {expense.title} - ₹ {expense.amount}
+                    {expense.title} - ₹ {expense.amount}
 
-  </span>
+                  </span>
 
-  <button
-    className="btn btn-danger btn-sm"
-    onClick={() => deleteExpense(expense.id)}
-  >
-    Delete
-  </button>
+                  <button
+                    className="btn btn-danger btn-sm"
+                    onClick={() => deleteExpense(expense.id)}
+                  >
+                    Delete
+                  </button>
 
-</li>
+                </li>
 
               ))}
 
@@ -366,7 +379,11 @@ const deleteIncome = async (id) => {
 
           <div className="card p-4 shadow">
 
-            <h4>Income</h4>
+            <h4 className="mb-4">
+
+              Income
+
+            </h4>
 
             <ul className="list-group">
 
@@ -374,10 +391,21 @@ const deleteIncome = async (id) => {
 
                 <li
                   key={item.id}
-                  className="list-group-item"
+                  className="list-group-item d-flex justify-content-between align-items-center"
                 >
 
-                  {item.source} - ₹ {item.amount}
+                  <span>
+
+                    {item.source} - ₹ {item.amount}
+
+                  </span>
+
+                  <button
+                    className="btn btn-danger btn-sm"
+                    onClick={() => deleteIncome(item.id)}
+                  >
+                    Delete
+                  </button>
 
                 </li>
 
